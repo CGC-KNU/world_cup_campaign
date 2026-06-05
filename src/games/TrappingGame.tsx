@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { addLeaderboardEntry, getTopLeaderboard, type LeaderboardEntry } from '../utils/storage';
 import { fetchLeaderboard, submitScore } from '../utils/api';
 import { campaignConfig } from '../config/campaignConfig';
+import { shareKakao } from '../utils/share';
 
 /** 서버 응답(created_at)을 로컬 LeaderboardEntry 포맷으로 변환 */
 function fromServer(entries: { nickname: string; score: number; created_at: string }[]): LeaderboardEntry[] {
@@ -298,6 +299,17 @@ export function TrappingGame() {
           <div className="trapping-result__label">최종 기록</div>
           <div className="trapping-result__score">{finalCount}</div>
           <div className="trapping-result__unit">회</div>
+
+          <button
+            className="btn-kakao-share"
+            onClick={() => shareKakao({
+              title: `⚽ 트래핑 챌린지 ${finalCount}회 달성!`,
+              description: '우주라이크 월드컵 캠페인, 너는 몇 번이나 공을 튀길 수 있어?',
+              buttonLabel: '나도 도전하기',
+            })}
+          >
+            💬 카카오톡 공유
+          </button>
 
           {finalCount > 0 && !submitted && (
             <div className="leaderboard-submit">

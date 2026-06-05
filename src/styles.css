@@ -158,16 +158,23 @@ body {
 }
 
 .back-btn {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 12px;
-  padding: 8px 14px;
-  font-size: 18px;
-  color: rgba(255,255,255,0.9);
-  transition: background 0.15s;
+  background: rgba(255,255,255,0.22);
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
 }
 
-.back-btn:active { background: rgba(255,255,255,0.26); }
+.back-btn:active { background: rgba(255,255,255,0.35); transform: scale(0.95); }
 
 .sub-header__title {
   font-size: 17px;
@@ -977,16 +984,22 @@ body {
   border-radius: 2px;
 }
 
-/* ↓ 피드백 반영: 공 크기 확대 */
+/* 공 컨테이너 — 크기를 명시해 이모지 렌더 차이를 흡수 */
 .trapping-ball {
   position: absolute;
-  font-size: 58px;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
   line-height: 1;
   pointer-events: none;
   user-select: none;
   filter: drop-shadow(0 8px 12px rgba(0,0,0,0.45));
   z-index: 2;
-  transition: filter 0.05s;
+  /* 착지 squish 가 바닥에서 올라오도록 origin 고정 */
+  transform-origin: center bottom;
 }
 
 /* 착지 완료 — 살짝 눌리는 효과 */
@@ -996,8 +1009,8 @@ body {
 
 @keyframes ballLand {
   0%   { transform: scaleX(1)    scaleY(1);    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.45)); }
-  20%  { transform: scaleX(1.25) scaleY(0.75); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); }
-  50%  { transform: scaleX(0.95) scaleY(1.05); }
+  20%  { transform: scaleX(1.25) scaleY(0.72); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); }
+  50%  { transform: scaleX(0.94) scaleY(1.06); }
   100% { transform: scaleX(1)    scaleY(1);    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35)); }
 }
 
@@ -1221,6 +1234,26 @@ body {
   border-radius: var(--r-pill);
   white-space: nowrap;
 }
+
+/* ── Kakao Share Button ──────────────────────────────────────────────────── */
+.btn-kakao-share {
+  width: 100%;
+  padding: 14px;
+  background: #FEE500;
+  color: #191919;
+  border: none;
+  border-radius: var(--r-pill);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 3px 12px rgba(254,229,0,0.45);
+}
+
+.btn-kakao-share:active { background: #e6cf00; transform: scale(0.97); }
 
 /* ── Utility ─────────────────────────────────────────────────────────────── */
 .mt-8  { margin-top: 8px;  }

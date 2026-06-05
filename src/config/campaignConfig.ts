@@ -9,7 +9,7 @@ export const campaignConfig = {
   appLinks: {
     ios:      'https://apps.apple.com/kr/app/wouldulike/id6740640251',
     android:  'https://play.google.com/store/apps/details?id=com.coggiri.new1&pcampaignid=web_share&utm_source=ig&utm_medium=social&utm_content=link_in_bio',
-    deepLink: 'wouldulike://',
+    deepLink: 'https://CGC-KNU.github.io/wouldulike_deeplink/',
   },
 
   // ─── 승부차기 ───────────────────────────────────────────────────────────────

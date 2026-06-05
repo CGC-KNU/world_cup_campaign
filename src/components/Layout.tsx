@@ -19,7 +19,7 @@ export function Layout({ title, children }: Props) {
             onClick={() => navigate(-1)}
             aria-label="뒤로 가기"
           >
-            ←
+            ‹ 뒤로
           </button>
           <h1 className="sub-header__title">{title}</h1>
         </header>

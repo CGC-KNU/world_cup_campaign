@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { campaignConfig } from '../config/campaignConfig';
 import { openApp } from '../utils/appLink';
+import { shareKakao } from '../utils/share';
 import {
   hasPenaltyAttemptedToday,
   loadPenaltyAttempt,
@@ -202,6 +203,18 @@ export function PenaltyShootoutGame() {
         )}
 
         <div className="penalty-result__btns">
+          <button
+            className="btn-kakao-share"
+            onClick={() => shareKakao({
+              title: isSuccess
+                ? `⚽ 승부차기 ${maxAttempts}번 중 ${goals}골 성공! 쿠폰도 받았어요 🏆`
+                : `😅 승부차기 ${maxAttempts}번 중 ${goals}골... 나보다 잘할 수 있어?`,
+              description: '우주라이크 월드컵 캠페인에서 승부차기에 도전해봐!',
+              buttonLabel: '나도 도전하기',
+            })}
+          >
+            💬 카카오톡 공유
+          </button>
           {isSuccess && (
             <button className="btn-success" onClick={openApp}>
               우주라이크 앱 바로가기

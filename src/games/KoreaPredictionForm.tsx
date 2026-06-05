@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { campaignConfig } from '../config/campaignConfig';
 import { loadPredictionSubmission, savePredictionSubmission } from '../utils/storage';
 import { submitPrediction } from '../utils/api';
+import { shareKakao } from '../utils/share';
 import type { PredictionValue, PredictionSubmission } from '../types/campaign';
 
 const { prediction } = campaignConfig;
@@ -100,7 +101,19 @@ export function KoreaPredictionForm() {
           ))}
         </div>
 
-        <p style={{ fontSize: 12, color: '#8AA0BC', marginTop: 8 }}>
+        <button
+          className="btn-kakao-share"
+          style={{ marginTop: 16 }}
+          onClick={() => shareKakao({
+            title: '🇰🇷 대한민국 경기 예측 완료!',
+            description: '우주라이크 월드컵 캠페인에서 대한민국의 승리를 예측했어. 같이 응원해요!',
+            buttonLabel: '나도 예측하기',
+          })}
+        >
+          💬 카카오톡 공유
+        </button>
+
+        <p style={{ fontSize: 12, color: '#8AA0BC', marginTop: 12 }}>
           이미 승부예측에 참여했습니다.
         </p>
       </div>
