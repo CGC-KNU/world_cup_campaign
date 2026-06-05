@@ -16,7 +16,7 @@ export function Layout({ title, children }: Props) {
         <header className="sub-header">
           <button
             className="back-btn"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/')}
             aria-label="뒤로 가기"
           >
             ‹ 뒤로

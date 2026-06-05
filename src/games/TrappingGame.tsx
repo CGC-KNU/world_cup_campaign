@@ -183,15 +183,8 @@ export function TrappingGame() {
     }
   }, [startGame, kickBall]);
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     handleFieldEvent(e.clientX, e.clientY);
-  }, [handleFieldEvent]);
-
-  const handleTouch = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (e.touches.length > 0) {
-      handleFieldEvent(e.touches[0].clientX, e.touches[0].clientY);
-    }
   }, [handleFieldEvent]);
 
   const handleSubmitScore = async () => {
@@ -249,8 +242,7 @@ export function TrappingGame() {
       <div
         ref={fieldRef}
         className="trapping-field"
-        onClick={handleClick}
-        onTouchStart={handleTouch}
+        onPointerDown={handlePointerDown}
         role={phase === 'idle' || phase === 'playing' ? 'button' : undefined}
         aria-label={phase === 'idle' || phase === 'playing' ? '공 차기' : undefined}
         tabIndex={phase === 'idle' ? 0 : undefined}
