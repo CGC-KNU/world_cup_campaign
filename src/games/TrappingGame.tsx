@@ -262,13 +262,15 @@ export function TrappingGame() {
         {/* 바닥 경계선 */}
         <div className="trapping-field__ground" />
 
-        {/* Ball */}
+        {/* Ball — transform 으로 이동해 GPU 레이어 분리, 잔상 제거 */}
         <div
-          className={`trapping-ball${phase === 'landing' ? ' trapping-ball--landed' : ''}`}
-          style={{ left: ballX, top: ballY }}
+          className="trapping-ball-mover"
+          style={{ transform: `translate(${ballX}px, ${ballY}px)` }}
           aria-hidden="true"
         >
-          ⚽
+          <div className={`trapping-ball${phase === 'landing' ? ' trapping-ball--landed' : ''}`}>
+            ⚽
+          </div>
         </div>
 
         {/* Idle hint */}
@@ -283,7 +285,20 @@ export function TrappingGame() {
         {phase === 'result' && (
           <div className="trapping-result-overlay">
             <div className="trapping-result-overlay__score">{finalCount}회</div>
-            <button className="trapping-retry-btn" onClick={startGame}>
+            <button
+              className="trapping-result-overlay__share"
+              onClick={e => {
+                e.stopPropagation();
+                shareKakao({
+                  title: `⚽ 트래핑 챌린지 ${finalCount}회 달성!`,
+                  description: '우주라이크 월드컵 캠페인, 너는 몇 번이나 공을 튀길 수 있어? 🔗 아래 링크에서 바로 도전!',
+                  buttonLabel: '나도 도전하기 🔥',
+                });
+              }}
+            >
+              💬 카카오톡으로 공유하기
+            </button>
+            <button className="trapping-retry-btn" onClick={e => { e.stopPropagation(); startGame(); }}>
               🔄 다시 도전하기
             </button>
           </div>

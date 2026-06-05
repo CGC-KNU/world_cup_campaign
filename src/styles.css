@@ -984,20 +984,29 @@ body {
   border-radius: 2px;
 }
 
-/* 공 컨테이너 — 크기를 명시해 이모지 렌더 차이를 흡수 */
-.trapping-ball {
+/* 이동 전담 래퍼 — GPU 레이어로 분리해 잔상 제거 */
+.trapping-ball-mover {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 58px;
   height: 58px;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 공 본체 — 래퍼 안에서 squish 애니메이션만 담당 */
+.trapping-ball {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 52px;
   line-height: 1;
-  pointer-events: none;
   user-select: none;
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.45));
-  z-index: 2;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
   /* 착지 squish 가 바닥에서 올라오도록 origin 고정 */
   transform-origin: center bottom;
 }
@@ -1072,6 +1081,28 @@ body {
   text-shadow: 0 2px 12px rgba(0,0,0,0.7);
   animation: popIn 0.3s ease;
 }
+
+.trapping-result-overlay__share {
+  background: #FEE500;
+  color: #191919;
+  border: none;
+  border-radius: var(--r-pill);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(254,229,0,0.5);
+  transition: transform 0.12s, background 0.12s;
+  animation: popIn 0.3s ease;
+  width: 80%;
+}
+
+.trapping-result-overlay__share:hover  { background: #e6cf00; transform: scale(1.03); }
+.trapping-result-overlay__share:active { background: #cdb800; transform: scale(0.96); }
 
 .trapping-retry-btn {
   background: var(--c-primary);

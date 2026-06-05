@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const KAKAO_JS_KEY = (import.meta as { env: Record<string, string> }).env.VITE_KAKAO_JS_KEY as string | undefined;
+const KAKAO_JS_KEY: string | undefined = import.meta.env.VITE_KAKAO_JS_KEY;
 
 function initKakao(): boolean {
   if (!KAKAO_JS_KEY || !window.Kakao) return false;
